@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 import os
 
 from exceptions import argument_exceptions
-from utils.parsers import get_supposed_parent_file_names, check_supposed_parent_file_paths
+from utils.parsers import get_supposed_parent_file_names, check_supposed_parent_file_paths, get_requested_component_names, get_components
 
 
 class Parser:
@@ -56,8 +56,12 @@ class ResultantDocument:
 
     def save(self):
         """Saves the file"""
-        parent_file_names = get_supposed_parent_file_names(self.source_path)
+        parent_file_names: list = get_supposed_parent_file_names(self.source_path)
         check_supposed_parent_file_paths(parent_file_names, self.parent_path)
+        requested_components: list = get_requested_component_names(self.source_path)
+        print(requested_components)
+        components: dict = get_components(requested_components, parent_file_names, self.parent_path)
+        print(components)
 
 
 class ChildDocument:
