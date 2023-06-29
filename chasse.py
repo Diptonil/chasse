@@ -58,12 +58,9 @@ class ResultantDocument:
     def save(self):
         """Saves the file."""
         parent_file_names: list = get_supposed_parent_file_names(self.source_path)
-        print(parent_file_names)
         check_supposed_parent_file_paths(parent_file_names, self.parent_path)
         requested_components: list = get_requested_component_names(self.source_path)
-        print(requested_components)
         components: dict = get_components(requested_components, parent_file_names, self.parent_path)
-        print(components)
         check_component_retrieval(requested_components, components)
         write_resultant_document(self.source_path, self.destination_path, components)
 
