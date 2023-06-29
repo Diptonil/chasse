@@ -37,5 +37,9 @@ class ParentAsDirectoryException(ChasseException):
     """Thrown if the child document bears mention of a parent document that is actualy a directory."""
 
 
-class ParentFilesNotFoundError(ChasseException):
+class ParentFilesNotFoundException(ChasseException):
     """Thrown if the parent path does not have all files mentioned by a source file."""
+
+
+class ComponentCountMismatchException(ChasseException):
+    """Thrown if the count of the parsed components don't match the count of the required components."""

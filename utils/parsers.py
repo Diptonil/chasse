@@ -1,6 +1,6 @@
 import os
 
-from exceptions import NoSpecifiedParentsException, ParentAsDirectoryException, ParentFilesNotFoundError
+from exceptions import NoSpecifiedParentsException, ParentAsDirectoryException, ParentFilesNotFoundException, ComponentCountMismatchException
 
 
 def get_supposed_parent_file_names(source_path: str) -> list:
@@ -11,7 +11,7 @@ def get_supposed_parent_file_names(source_path: str) -> list:
     with open(source_path, "r") as file:
         for line in file:
             line = line.strip()
-            if line[-3:-1] != "!!":
+            if line[-3:] != "!!>":
                 break
             parent_files.append(line[1:-3] + '.html')
             has_no_parents = False
@@ -27,14 +27,11 @@ def check_supposed_parent_file_paths(parent_files: list, parent_path: str) -> No
 
     for file in os.listdir(parent_path):
         if os.path.isdir(file) and file in parent_files:
-            print(os.path.isdir(file))
             raise ParentAsDirectoryException
         if file in parent_files:
             resultant_parent_files.append(file)
-    print(resultant_parent_files)
-    print(parent_files)
     if set(resultant_parent_files) != set(parent_files):
-        raise ParentFilesNotFoundError
+        raise ParentFilesNotFoundException
         
 
 def get_requested_component_names(source_path: str) -> list:
@@ -44,7 +41,7 @@ def get_requested_component_names(source_path: str) -> list:
     with open(source_path, "r") as file:
         for line in file:
             line = line.strip()
-            if line[-5:-1] == "!! /":
+            if len(line) > 6 and line[-5:] == "!! />" and line[0] == "<" and line[1].isupper():
                 requested_component_names.append(line[1:-5])
     return requested_component_names
 
@@ -61,15 +58,22 @@ def get_components(requested_component_names: list, parent_file_names: list, par
             for line in file:
                 output_line = line
                 line = line.strip()
-                if line[-3:-1] == "!!" and not active_component:
+                if len(line) > 4 and line[-3:] == "!!>" and line[0] == "<" and line[1].isupper() and not active_component:
                     active_component_name = line[1:-3]
                     if active_component_name in requested_component_names:
                         active_component = True
                         continue
-                if line[-3:-1] == "!!" and line[1] == "/" and active_component:
+                if len(line) > 4 and line[-3:] == "!!>" and line[0] == "<" and line[2].isupper() and line[1] == "/" and active_component:
                     components[active_component_name] = component
                     component = list()
                     active_component = False
                 if active_component:
                     component.append(output_line)
     return components
+
+
+def check_component_retrieval(requested_component_names: list, components: dict) -> None:
+    """Checks if all the components requested by the child document was succesfully retrieved."""
+
+    if len(requested_component_names) != len(components):
+        raise ComponentCountMismatchException
