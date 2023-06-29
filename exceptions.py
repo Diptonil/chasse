@@ -1,20 +1,12 @@
 import os
 
 
-def exceptions(source_path: str, destination_path: str):
-    invalid_directory_path_exception(destination_path)
-    invalid_file_path_exception(source_path)
-
-
-def invalid_directory_path_exception(destination_path: str) -> None:
+def argument_exceptions(source_path: str, destination_path: str):
     if os.path.isfile(destination_path):
         raise InvalidDirectoryPathException
-    
-
-def invalid_file_path_exception(source_path: str) -> None:
     if os.path.isdir(source_path):
         raise InvalidFilePathException
-    
+
 
 class ChasseException(Exception):
     """Base exception of the application."""
@@ -32,3 +24,18 @@ class InvalidFilePathException(ChasseException):
 
     def __init__(self):            
         super().__init__("Path to the source file needed, received a directory.")
+
+
+class NoSpecifiedParentsException(ChasseException):
+    """Thrown if the child document has no mentions of any parent document."""
+
+    def __init__(self):            
+        super().__init__(".")
+
+
+class ParentAsDirectoryException(ChasseException):
+    """Thrown if the child document bears mention of a parent document that is actualy a directory."""
+
+
+class ParentFilesNotFoundError(ChasseException):
+    """Thrown if the parent path does not have all files mentioned by a source file."""
