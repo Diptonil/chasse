@@ -13,5 +13,4 @@ rough.txt
 
 # Packaging & Distribution
 build
-dist
 chasse.spec

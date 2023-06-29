@@ -55,7 +55,7 @@ All you have to do is:
 
 ## About
 
-**Chasse** borrows from the concepts of React components, Sass mixins and Django template inheritance to charge up simple and blazingly fast applications deployed on a web-server that don't require the overhead cast down by `npm` (or any other processes). It is implemented using a simple Python application that uses `argparse` under the hood to power up the CLI. <br />
+**Chasse** borrows from the concepts of React components, Sass mixins and Django template inheritance to charge up simple and blazingly fast applications deployed on a web-server that don't require the overhead cast down by running `npm` (or any other processes). It is implemented using a simple Python application that uses `argparse` under the hood to power up the CLI. <br />
 The current release is the first in the line and has somewhat limited operational capability, but is capable of getting the main job done. Further planned improvements are written down below.
 
 <p align="right">(<a href="#top">Top</a>)</p>
@@ -63,7 +63,82 @@ The current release is the first in the line and has somewhat limited operationa
 
 ## Pros
 
-1. **Static Websites? You Don't Need the `npm` Overhead**: Much of really good static websites can be shipped without the use of `npm`.
+1. **Static Websites? Maybe You Don't Need the `npm` Overhead...**: A great many good static websites can be shipped without the use of package managers or libraries (just plain HTML, CSS and JS). Content tends to get repetitive for HTML in such stacks, in which case this can be used to program sites without the use of heavier templating engines or utilities.
+1. **Zero Dependencies**: The `chasse` binary is all that is needed to begin. No underlying installations or packages required.
+1. **Similar to Sass**: Chasse generates HTML files in a similar manner to Sass. Hence, developers familiar with Sass would be already set to go.
+1. **HTML-Only**: Unlike Sass, there are no foreign files that would require extensions or plugins in the IDE to work. Parent and child source files are in HTML. And so are the resultant files.
+1. **Portable Binary**: The binaries in the repository are all cross-platform.
+
+<p align="right">(<a href="#top">Top</a>)</p>
+
+
+## Cons
+
+1. **Too Young**: Lacks many features that can be added to make it more robust.
+1. **Binary Size**: The `dist` folder has been removed `.gitignore` since the binary inside it is barely of 4 kB. The independent single-file binary (in the root folder), however, occupies 6 mB, which is somewhat large as a utility.
+1. **Less Customizable**: There are fewer features and CLI options at present. However, the tool is expected to improve more in subsequent releases.
+
+<p align="right">(<a href="#top">Top</a>)</p>
+
+
+## Future
+
+1. **Tests**: Tests written would be using the `pytest` framework.
+1. **Passing Data**: Components would be allowed to have data passed on to them in form of variables.
+1. **Nested Inheritance**: Components would be allowed to have components within themselves.
+1. **Transition to Go**: Python is an interpreted language, due to which, despite the general programming ease, a release featuring Go would be introduced soon that would also be able to use concurrency in parsing multiple files at once, giving a binary that is extremely small and portable.
+1. **Processing Multiple Files**: Multiple files would be parsed at once to generate HTML.
+1. **Logging Architecture**: Place logging architecture to help in debugging and testing.
+1. **Improved Error Handling**: Make error (and success) messages more informative.
+
+<p align="right">(<a href="#top">Top</a>)</p>
+
+
+## Binaries
+
+There are two ways to use the application:
+1. **The `chasse` Binary**: The binary in the root is of around 6 mB. We can simply use this binary to do quick and dirty conversions. This is not recommended for standard use. Use it like:
+
+    ```sh
+    .\chasse child.html src
+    ```
+1. **The `dist` Folder**: The folder (with the binary) is sized at around 4 kB. The folder is to be kept in the system at a desired location. The PATH variable is to be updated. Then the tool would be available globally across the system for use. This is the recommended use of the tool.
+
+    ```sh
+    chasse child.html src
+    ```
+
+<p align="right">(<a href="#top">Top</a>)</p>
+
+
+## Options
+
+1. `-h`: Shows help with the complete guide to the use of the tool.
+    ```sh
+    ./chasse -h
+    usage: Chasse [-h] [-v] [-p PARENT_PATH] source destinationpath
+
+    Convert Chasse files to HTML files.
+
+    positional arguments:
+    source                Enter the file path of the Chasse file to be converted into an HTML file.
+    destinationpath       Enter the directory wherein the HTML files will get stored.
+
+    options:
+    -h, --help            show this help message and exit
+    -v, --version         show program's version number and exit
+    -p PARENT_PATH, --parent-path PARENT_PATH
+                            To specify the path to the parent files. Defaults to the source path.
+    ```
+1. `-v`: Shows the current version of the tool.
+    ```sh
+    ./chasse -v
+    Chasse 1.0.0
+    ```
+1. `-p`: To specify the path to the parent files. Defaults to the source path.
+    ```sh
+    .chasse -p="components/home/" child.html src
+    ```
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
