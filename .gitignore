@@ -1,6 +1,19 @@
+# Environments
 venv
 __pycache__
 
-rough*.chasse
-rough.txt
+# Application Design
+design
+parent.chasse
+child.chasse
+child.html
+
+# Test
+test.html
+*test.html
+test.chasse
+*test.chasse
+
+# Rough
 rough
+rough.txt
