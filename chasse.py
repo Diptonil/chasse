@@ -41,7 +41,7 @@ class Parser:
         args = vars(self.parser.parse_args())
         parent_path = args.get("parent-path")
         if parent_path is None:
-            parent_path = os.path.dirname(parent_path)
+            parent_path = os.path.dirname(self.get_source_path())
         return parent_path
 
 
@@ -72,7 +72,7 @@ class ChildDocument:
     def convert(self, parent_path: str, destination_path: str) -> ResultantDocument:
         """Returns the resultant document."""
 
-        return ResultantDocument(self.source_path, parent_path, destination_path)
+        return ResultantDocument(parent_path, self.source_path, destination_path)
 
 
 def main():
