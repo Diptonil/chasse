@@ -12,7 +12,7 @@ class ResultantDocument:
         self.save()
 
     def save(self):
-        """Saves the file."""
+        """Saves the resultant HTML file in the given directory."""
         parent_file_names: list = get_supposed_parent_file_names(self.source_path)
         check_supposed_parent_file_paths(parent_file_names, self.parent_path)
         requested_components: list = get_requested_component_names(self.source_path)

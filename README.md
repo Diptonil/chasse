@@ -160,9 +160,12 @@ There are two ways to use the application:
     - Parsing parent HTML file for extracting components.
     - Generation of resultant HTML files with the components.
 1. **Version 1.1.0**:
-    - Logging architecture established for development and debugging.
+    - Option `-l` to view additional application-level logs added.
     - More responsive CLI, with respect to error and success messages.
-    - Introduce code conventions.
+    - Introduce code conventions and enrich terminologies.
+1. **Version 1.1.1**:
+    - Linter support for development.
+    - Minor refactoring of code.
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
@@ -170,3 +173,5 @@ There are two ways to use the application:
 ## Release Log
 
 No official releases yet.
+
+<p align="right">(<a href="#top">Top</a>)</p>

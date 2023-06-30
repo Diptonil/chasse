@@ -1,7 +1,8 @@
-from argparse import ArgumentParser
+from argparse import ArgumentParser, SUPPRESS
 import os
 
 from exceptions import NoSpecifiedParentsException, ParentAsDirectoryException, ParentFilesNotFoundException, ComponentCountMismatchException
+from utils.logs import logger
 
 
 class Parser:
@@ -17,10 +18,10 @@ class Parser:
     def add_parser_arguments(self) -> None:
         """Adds all required arguments to the parser."""
 
-        options_group = self.parser.add_argument_group('OPTIONS')
         positional_arguments_group = self.parser.add_argument_group('POSITIONAL ARGUMENTS')
         positional_arguments_group.add_argument("source-file", type=str, help="The file path of the Chasse file to be converted into an HTML file.")
         positional_arguments_group.add_argument("destination-path", type=str, help="The directory wherein the HTML files will get stored.")
+        options_group = self.parser.add_argument_group('OPTIONS')
         options_group.add_argument("-h", "--help", action="help", help="To show this help message.")
         options_group.add_argument("-v", "--version", action="version", version="%(prog)s 1.0.0", help="To show software's version number.")
         options_group.add_argument("-l", "--logs", action="store_true", help="To enable display of low-level logs (DEFAULT: False).")
@@ -51,9 +52,7 @@ class Parser:
         """Returns if low-level logs are required."""
 
         args, _ = self.parser.parse_known_args()
-        if args.logs is not None:
-            return True
-        return False
+        return args.logs
     
 
 def get_supposed_parent_file_names(source_path: str) -> list:
@@ -70,6 +69,8 @@ def get_supposed_parent_file_names(source_path: str) -> list:
             has_no_parents = False
     if has_no_parents:
         raise NoSpecifiedParentsException
+    if logger.is_log_required():
+        logger.info(f"{len(parent_files)} parent file references found in `{source_path}`.")
     return parent_files
 
 
@@ -85,6 +86,8 @@ def check_supposed_parent_file_paths(parent_files: list, parent_path: str) -> No
             resultant_parent_files.append(file)
     if set(resultant_parent_files) != set(parent_files):
         raise ParentFilesNotFoundException
+    if logger.is_log_required():
+        logger.info("All parent file references intact.")
         
 
 def get_requested_component_names(source_path: str) -> list:
@@ -96,6 +99,8 @@ def get_requested_component_names(source_path: str) -> list:
             line = line.strip()
             if len(line) > 6 and line[-5:] == "!! />" and line[0] == "<" and line[1].isupper():
                 requested_component_names.append(line[1:-5])
+    if logger.is_log_required():
+        logger.info(f"{len(requested_component_names)} components requested by the child file.")
     return requested_component_names
 
 
@@ -122,6 +127,8 @@ def get_components(requested_component_names: list, parent_file_names: list, par
                     active_component = False
                 if active_component:
                     component.append(output_line)
+    if logger.is_log_required():
+        logger.info(f"{len(components)} matching components found in the parent files.")
     return components
 
 
