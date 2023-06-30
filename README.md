@@ -153,7 +153,7 @@ There are two ways to use the application:
 <p align="right">(<a href="#top">Top</a>)</p>
 
 
-## Release Log
+## Development Log
 
 1. **Version 1.0.0**:
     - Basic child HTML file parsing to get required components.
@@ -163,3 +163,10 @@ There are two ways to use the application:
     - Logging architecture established for development and debugging.
     - More responsive CLI, with respect to error and success messages.
     - Introduce code conventions.
+
+<p align="right">(<a href="#top">Top</a>)</p>
+
+
+## Release Log
+
+No official releases yet.

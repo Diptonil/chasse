@@ -1,7 +1,60 @@
+from argparse import ArgumentParser
 import os
 
 from exceptions import NoSpecifiedParentsException, ParentAsDirectoryException, ParentFilesNotFoundException, ComponentCountMismatchException
 
+
+class Parser:
+    """Defines the parser that would operate on the child HTML document."""
+
+    def __init__(self) -> None:
+        self.parser = ArgumentParser(prog="Chasse", description="Convert child HTML files using components to HTML files.", add_help=False)
+        self.add_parser_arguments()
+
+    def __str__(self) -> str:
+        return "The main argument parser."
+
+    def add_parser_arguments(self) -> None:
+        """Adds all required arguments to the parser."""
+
+        options_group = self.parser.add_argument_group('OPTIONS')
+        positional_arguments_group = self.parser.add_argument_group('POSITIONAL ARGUMENTS')
+        positional_arguments_group.add_argument("source-file", type=str, help="The file path of the Chasse file to be converted into an HTML file.")
+        positional_arguments_group.add_argument("destination-path", type=str, help="The directory wherein the HTML files will get stored.")
+        options_group.add_argument("-h", "--help", action="help", help="To show this help message.")
+        options_group.add_argument("-v", "--version", action="version", version="%(prog)s 1.0.0", help="To show software's version number.")
+        options_group.add_argument("-l", "--logs", action="store_true", help="To enable display of low-level logs (DEFAULT: False).")
+        options_group.add_argument("-p", "--parent-path", action="store_true", help="To specify the path to the parent HTML files (DEFAULT: Child source path).")
+    
+    def get_source_path(self) -> str:
+        """Returns the source file path."""
+
+        args = vars(self.parser.parse_args())
+        return args.get("source-file")
+    
+    def get_destination_path(self) -> str:
+        """Returns the destination file path."""
+
+        args = vars(self.parser.parse_args())
+        return args.get("destination-path")
+    
+    def get_parent_path(self) -> str:
+        """Returns the path to the parent files."""
+
+        args = vars(self.parser.parse_args())
+        parent_path = args.get("parent-path")
+        if parent_path is None:
+            parent_path = os.path.dirname(self.get_source_path())
+        return parent_path
+    
+    def get_log_requirement(self) -> bool:
+        """Returns if low-level logs are required."""
+
+        args, _ = self.parser.parse_known_args()
+        if args.logs is not None:
+            return True
+        return False
+    
 
 def get_supposed_parent_file_names(source_path: str) -> list:
     """Returns all the parent file paths."""
@@ -77,3 +130,4 @@ def check_component_retrieval(requested_component_names: list, components: dict)
 
     if len(requested_component_names) != len(components):
         raise ComponentCountMismatchException
+    
