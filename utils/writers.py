@@ -18,5 +18,6 @@ def write_resultant_document(source_path: str, destination_path: str, components
                 continue
             file.write(output_line)
     source_file.close()
+    logger.initialize_logger(True)
     if logger.is_log_required():
-        logger.info(f"Resultant file `{source_file_name}` has been generated in `{destination_path}`!")
+        logger.info(f"SUCCESS: Resultant file `{source_file_name}` has been generated in `{destination_path}`!")

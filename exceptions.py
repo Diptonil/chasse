@@ -2,6 +2,10 @@ import os
 
 
 def argument_exceptions(source_path: str, destination_path: str):
+    if not os.path.exists(source_path):
+        raise FileNotFoundError("Path to the source file is invalid.")
+    if not os.path.exists(destination_path):
+        raise FileNotFoundError("Path to the destination directory is invalid.")
     if os.path.isfile(destination_path):
         raise InvalidDirectoryPathException
     if os.path.isdir(source_path):
@@ -15,22 +19,13 @@ class ChasseException(Exception):
 class InvalidDirectoryPathException(ChasseException):
     """Thrown if the corresponding argument is a file instead of a directory."""
 
-    def __init__(self):            
-        super().__init__("Path to the resultant directory needed, received a file.")
-
 
 class InvalidFilePathException(ChasseException):
     """Thrown if the corresponding argument is a directory instead of a file."""
 
-    def __init__(self):            
-        super().__init__("Path to the source file needed, received a directory.")
-
 
 class NoSpecifiedParentsException(ChasseException):
     """Thrown if the child document has no mentions of any parent document."""
-
-    def __init__(self):            
-        super().__init__(".")
 
 
 class ParentAsDirectoryException(ChasseException):

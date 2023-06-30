@@ -11,6 +11,8 @@ class Parser:
     def __init__(self) -> None:
         self.parser = ArgumentParser(prog="Chasse", description="Convert child HTML files using components to HTML files.", add_help=False)
         self.add_parser_arguments()
+        self.args = vars(self.parser.parse_args())
+
 
     def __str__(self) -> str:
         return "The main argument parser."
@@ -30,20 +32,17 @@ class Parser:
     def get_source_path(self) -> str:
         """Returns the source file path."""
 
-        args = vars(self.parser.parse_args())
-        return args.get("source-file")
+        return self.args.get("source-file")
     
     def get_destination_path(self) -> str:
         """Returns the destination file path."""
 
-        args = vars(self.parser.parse_args())
-        return args.get("destination-path")
+        return self.args.get("destination-path")
     
     def get_parent_path(self) -> str:
         """Returns the path to the parent files."""
 
-        args = vars(self.parser.parse_args())
-        parent_path = args.get("parent-path")
+        parent_path = self.args.get("parent-path")
         if parent_path is None:
             parent_path = os.path.dirname(self.get_source_path())
         return parent_path
@@ -70,7 +69,7 @@ def get_supposed_parent_file_names(source_path: str) -> list:
     if has_no_parents:
         raise NoSpecifiedParentsException
     if logger.is_log_required():
-        logger.info(f"{len(parent_files)} parent file references found in `{source_path}`.")
+        logger.info(f"INFO: {len(parent_files)} parent file references found in `{source_path}`.")
     return parent_files
 
 

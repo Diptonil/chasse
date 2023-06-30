@@ -11,7 +11,7 @@
 ## Procedure
 
 All you have to do is:
-- Create a *parent* HTML file (or multiple parent files) for all the components you want to reuse. define components inside it like so (**note the duo of tailing exclamation marks**!), let this be called `template.html`:
+- Create a *parent* HTML file (or multiple parent files) for all the components you want to reuse. define components inside it like so (**note the duo of tailing exclamation marks**!), let this be called `template.chasse.html`:
   
     ```html
     ...
@@ -32,11 +32,12 @@ All you have to do is:
     </UniversalFooter!!>
     ...
     ```
-- Create a *child* HTML file to import and use the components you need to. First declare the *parent* files that will be used (**here it is `templates.html`, hence the first line**), then straightaway import the components (**note the use of two exclamation marks, followed by a space and a '/'**)! It is named as `child.html`.
+- Create a *child* HTML file to import and use the components you need to. First declare the *parent* files that will be used in the *very first line* (**here it is `templates.html`, hence the first line**), then straightaway import the components (**note the use of two exclamation marks, followed by a space and a '/'**)! It is named as `child.chasse.html`.
   
     ```html
     <template!!>
     
+    <!DOCTYPE HTML5>
     <html>
         ...
         <Navbar!! />
@@ -46,9 +47,9 @@ All you have to do is:
     ```
 - That's it, you're all set! Run the command, passing in the *child* file and the *location to extract the generated HTML files* into:
     ```sh
-    .\chasse child.html src
+    .\chasse child.chasse.html src
     ```
-- That's all you have to do to convert the components into complete code!
+- That's all you have to do to convert the components into complete code! The resultant files are in `.html`, which browsers can understand with ease.
     
 <p align="right">(<a href="#top">Top</a>)</p>
 
@@ -56,7 +57,7 @@ All you have to do is:
 ## About
 
 **Chasse** borrows from the concepts of React components, Sass mixins and Django template inheritance to charge up simple and blazingly fast applications deployed on a web-server that don't require the overhead cast down by running `npm` (or any other processes). It is implemented using a simple Python application that uses `argparse` under the hood to power up the CLI. <br />
-The current release is the first in the line and has somewhat limited operational capability, but is capable of getting the main job done. Further planned improvements are written down below.
+The current release is the among the early ones in the line and has somewhat limited operational capability, but is capable of getting the main job done. Further planned improvements are written down below.
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
@@ -88,7 +89,6 @@ The current release is the first in the line and has somewhat limited operationa
 1. **Nested Inheritance**: Components would be allowed to have components within themselves.
 1. **Transition to Go**: Python is an interpreted language, due to which, despite the general programming ease, a release featuring Go would be introduced soon that would also be able to use concurrency in parsing multiple files at once, giving a binary that is extremely small and portable.
 1. **Processing Multiple Files**: Multiple files would be parsed at once to generate HTML.
-1. **Logging Architecture**: Place logging architecture to help in debugging and testing.
 1. **Improved Error Handling**: Make error (and success) messages more informative.
 
 <p align="right">(<a href="#top">Top</a>)</p>
@@ -96,14 +96,8 @@ The current release is the first in the line and has somewhat limited operationa
 
 ## Binaries
 
-There are two ways to use the application:
-1. **The `chasse` Binary**: The binary in the root is of around 6 mB. We can simply use this binary to do quick and dirty conversions. This is not recommended for standard use. Use it like:
-
-    ```sh
-    .\chasse child.html src
-    ```
-1. **The `dist` Folder**: The folder (with the binary) is sized at around 4 kB. The folder is to be kept in the system at a desired location. The PATH variable is to be updated. Then the tool would be available globally across the system for use. This is the recommended use of the tool.
-
+The current supported way to use the application:
+1. **The `chasse` Folder**: The folder (with the binary) is sized at around 4 kB. The folder is to be kept in the system at a desired location. The PATH variable is to be updated accordingly to point to this folder itself (not the executable in it). Then the tool would be available globally across the system for use. This is the recommended use of the tool.
     ```sh
     chasse child.html src
     ```
@@ -113,31 +107,15 @@ There are two ways to use the application:
 
 ## Options
 
-1. `-h`: Shows help with the complete guide to the use of the tool.
+1. `-h` or `--help`: Shows help with the complete guide to the use of the tool.
+1. `-v` or `--version`: Shows the current version of the tool.
+1. `-p` or `--parent-path`: To specify the path to the parent files. Defaults to the source path.
     ```sh
-    ./chasse -h
-    usage: Chasse [-h] [-v] [-p PARENT_PATH] source destinationpath
-
-    Convert Chasse files to HTML files.
-
-    positional arguments:
-    source                Enter the file path of the Chasse file to be converted into an HTML file.
-    destinationpath       Enter the directory wherein the HTML files will get stored.
-
-    options:
-    -h, --help            show this help message and exit
-    -v, --version         show program's version number and exit
-    -p PARENT_PATH, --parent-path PARENT_PATH
-                            To specify the path to the parent files. Defaults to the source path.
+    chasse -p="components/home/" child.chasse.html src
     ```
-1. `-v`: Shows the current version of the tool.
+1. `-l` or `--logs`: To enable display of the logs during the generation of the HTML files. This is helpful when the files fail to get generated and there is an error with the Chasse source files.
     ```sh
-    ./chasse -v
-    Chasse 1.0.0
-    ```
-1. `-p`: To specify the path to the parent files. Defaults to the source path.
-    ```sh
-    .chasse -p="components/home/" child.html src
+    chasse -l child.chasse.html src
     ```
 
 <p align="right">(<a href="#top">Top</a>)</p>
@@ -147,6 +125,7 @@ There are two ways to use the application:
 
 1. **Parent HTML File**: This is the file wherein the components (reusable or otherwise) to be used by the children are defined.
 1. **Child (or Source) HTML File**: This is the file wherein the HTML document is written with the use of components. Basically, this is where development is to be done. Later, this is the file that gets converted into the HTML code that is used and understood by the browser.
+1. **Chasse File**: Any file having the extension `.chasse.html` is a Chasse file. This means both parent HTML and Child (or Source) HTML files are both collectively referred to as Chasse files.
 1. **Resultant HTML File**: This is the file which gets generated and used by the browser.
 1. **Components**: These are blocks of reusable code that can be represented by a name. These names can just be plugged into the HTML documents in place of huge redundant paragraphs of the same thing, over and over again.
 
@@ -155,6 +134,7 @@ There are two ways to use the application:
 
 ## Development Log
 
+Currrent stable version is v1.1.0
 1. **Version 1.0.0**:
     - Basic child HTML file parsing to get required components.
     - Parsing parent HTML file for extracting components.
@@ -166,6 +146,7 @@ There are two ways to use the application:
 1. **Version 1.1.1**:
     - Linter support for development.
     - Minor refactoring of code.
+    - Profiling and metrics.
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
