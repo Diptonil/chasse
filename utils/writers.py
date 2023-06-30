@@ -4,7 +4,7 @@ import os
 def write_resultant_document(source_path: str, destination_path: str, components: dict) -> None:
     """Writes data to the new resultant document in the specified location."""
 
-    source_file_name = os.path.basename(source_path)
+    source_file_name = os.path.basename(source_path).replace(".chasse", "")
     source_file = open(source_path, "r")
     with open(os.path.join(destination_path, source_file_name), "w") as file:
         for line in source_file:

@@ -145,5 +145,21 @@ There are two ways to use the application:
 
 ## Terminology
 
+1. **Parent HTML File**: This is the file wherein the components (reusable or otherwise) to be used by the children are defined.
+1. **Child (or Source) HTML File**: This is the file wherein the HTML document is written with the use of components. Basically, this is where development is to be done. Later, this is the file that gets converted into the HTML code that is used and understood by the browser.
+1. **Resultant HTML File**: This is the file which gets generated and used by the browser.
+1. **Components**: These are blocks of reusable code that can be represented by a name. These names can just be plugged into the HTML documents in place of huge redundant paragraphs of the same thing, over and over again.
+
 <p align="right">(<a href="#top">Top</a>)</p>
 
+
+## Release Log
+
+1. **Version 1.0.0**:
+    - Basic child HTML file parsing to get required components.
+    - Parsing parent HTML file for extracting components.
+    - Generation of resultant HTML files with the components.
+1. **Version 1.1.0**:
+    - Logging architecture established for development and debugging.
+    - More responsive CLI, with respect to error and success messages.
+    - Introduce code conventions.

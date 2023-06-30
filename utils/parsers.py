@@ -13,7 +13,7 @@ def get_supposed_parent_file_names(source_path: str) -> list:
             line = line.strip()
             if line[-3:] != "!!>":
                 break
-            parent_files.append(line[1:-3] + '.html')
+            parent_files.append(line[1:-3] + '.chasse.html')
             has_no_parents = False
     if has_no_parents:
         raise NoSpecifiedParentsException
