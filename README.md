@@ -32,7 +32,7 @@ All you have to do is:
     </UniversalFooter!!>
     ...
     ```
-- Create a *child* HTML file to import and use the components you need to. First declare the *parent* files that will be used in the *very first line* (**here it is `templates.html`, hence the first line**), then straightaway import the components (**note the use of two exclamation marks, followed by a space and a '/'**)! It is named as `child.chasse.html`.
+- Create a *child* HTML file to import and use the components you need to. First declare the *parent* files that will be used in the *very first line* (**here it is `template.chasse.html`, hence the first line**), then straightaway import the components (**note the use of two exclamation marks, followed by a space and a '/'**)! It is named as `child.chasse.html`.
   
     ```html
     <template!!>
@@ -89,6 +89,7 @@ The current release is the among the early ones in the line and has somewhat lim
 1. **Nested Inheritance**: Components would be allowed to have components within themselves.
 1. **Transition to Go**: Python is an interpreted language, due to which, despite the general programming ease, a release featuring Go would be introduced soon that would also be able to use concurrency in parsing multiple files at once, giving a binary that is extremely small and portable.
 1. **Processing Multiple Files**: Multiple files would be parsed at once to generate HTML.
+1. **Rectified indentations**: Deeply nested components may not get properly indented at present without IDE support.
 1. **Improved Error Handling**: Make error (and success) messages more informative.
 
 <p align="right">(<a href="#top">Top</a>)</p>
@@ -134,19 +135,22 @@ The current supported way to use the application:
 
 ## Development Log
 
-Currrent stable version is v1.1.0
+Currrent stable version is v1.1.0.
 1. **Version 1.0.0**:
     - Basic child HTML file parsing to get required components.
     - Parsing parent HTML file for extracting components.
     - Generation of resultant HTML files with the components.
 1. **Version 1.1.0**:
     - Option `-l` to view additional application-level logs added.
-    - More responsive CLI, with respect to error and success messages.
-    - Introduce code conventions and enrich terminologies.
+    - CLI more responsive to error and success messages.
+    - Enrich terminologies and introduce extension changes.
 1. **Version 1.1.1**:
     - Linter support for development.
     - Minor refactoring of code.
     - Profiling and metrics.
+1. **Version 1.2.0**:
+    - Introduce code conventions.
+    - Introduce official releases (delivered through the official website).
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
@@ -154,5 +158,14 @@ Currrent stable version is v1.1.0
 ## Release Log
 
 No official releases yet.
+
+<p align="right">(<a href="#top">Top</a>)</p>
+
+
+## Important
+
+1. The Chasse files that would be converted into regular HTML files *must* have the extension `<file-name>.chasse.html`. This is done to ensure that users do not confuse the generated files with the source files. This feature would not be altered in future releases in support of `.html` extensions as well to maintain clarity and segregation.
+1. The parents files *must* be defined starting from the very first line, without any line breaks in between. This is a feature limitation in the current version which would soon be addressed.
+1. Remember that a component is plugged in as <Component!! /> instead of <Component!!/>. Future releases would address this issue.
 
 <p align="right">(<a href="#top">Top</a>)</p>

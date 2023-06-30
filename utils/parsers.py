@@ -9,7 +9,7 @@ class Parser:
     """Defines the parser that would operate on the child HTML document."""
 
     def __init__(self) -> None:
-        self.parser = ArgumentParser(prog="Chasse", description="Convert child HTML files using components to HTML files.", add_help=False)
+        self.parser = ArgumentParser(prog="chasse", description="Convert child HTML files using components to HTML files.", add_help=False)
         self.add_parser_arguments()
         self.args = vars(self.parser.parse_args())
 
@@ -25,7 +25,7 @@ class Parser:
         positional_arguments_group.add_argument("destination-path", type=str, help="The directory wherein the HTML files will get stored.")
         options_group = self.parser.add_argument_group('OPTIONS')
         options_group.add_argument("-h", "--help", action="help", help="To show this help message.")
-        options_group.add_argument("-v", "--version", action="version", version="%(prog)s 1.0.0", help="To show software's version number.")
+        options_group.add_argument("-v", "--version", action="version", version="%(prog)s 1.1.0", help="To show software's version number.")
         options_group.add_argument("-l", "--logs", action="store_true", help="To enable display of low-level logs (DEFAULT: False).")
         options_group.add_argument("-p", "--parent-path", action="store_true", help="To specify the path to the parent HTML files (DEFAULT: Child source path).")
     

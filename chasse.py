@@ -18,7 +18,7 @@ def main():
         child_document = ChildDocument(source_path)
         child_document.convert(parent_path, destination_path)
     except FileNotFoundError as exception:
-        logger.error(str(exception))
+        logger.error("ERROR: " + str(exception))
     except InvalidDirectoryPathException:
         logger.error("ERROR: Path to the resultant directory needed, received a file.")
     except InvalidFilePathException:
