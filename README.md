@@ -4,7 +4,9 @@
 <span>
     <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
 </span>
-<img src="_static/chasse.png" />
+<p align="center">
+    <img src="_static/chasse.png" />
+</p>
 
 **Chasse** is a lightweight CLI tool to write reusable HTML *components* (much like JSX) instead of repetitive code, without too many steps or a steep learning curve. It strips down on the boring and redundant and makes HTML fun again! Just run a simple command on an HTML file inheriting components from a base HTML file to convert it into a complete, usable HTML file. 
 
