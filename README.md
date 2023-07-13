@@ -1,9 +1,11 @@
 # Chasse
 
 <div id="top"></div>
-<span>
-    <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
-</span>
+
+<img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
+
+![CodeQL Python](https://github.com/Diptonil/chasse/actions/workflows/codeql.yml/badge.svg)
+
 <p align="center">
     <img src="_static/chasse.png" />
 </p>
