@@ -4,8 +4,9 @@
 <span>
     <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
 </span>
+<img src="_static/chasse.png" />
 
-**Chasse** is a lightweight CLI tool to write reusable HTML *components* (much like JSX) instead of repetitive code, without too much of steps or learning. It strips down on the boring and redundant and makes HTML fun again! Just run a simple command on an HTML file inheriting components from a base HTML file to convert it into a complete HTML file. 
+**Chasse** is a lightweight CLI tool to write reusable HTML *components* (much like JSX) instead of repetitive code, without too many steps or a steep learning curve. It strips down on the boring and redundant and makes HTML fun again! Just run a simple command on an HTML file inheriting components from a base HTML file to convert it into a complete, usable HTML file. 
 
 
 ## Procedure
@@ -47,7 +48,7 @@ All you have to do is:
     ```
 - That's it, you're all set! Run the command, passing in the *child* file and the *location to extract the generated HTML files* into:
     ```sh
-    .\chasse child.chasse.html src
+    chasse child.chasse.html src
     ```
 - That's all you have to do to convert the components into complete code! The resultant files are in `.html`, which browsers can understand with ease.
     
@@ -99,6 +100,7 @@ The current release is the among the early ones in the line and has somewhat lim
 
 The current supported way to use the application:
 1. **The `chasse` Folder**: The folder (with the binary) is sized at around 4 kB. The folder is to be kept in the system at a desired location. The PATH variable is to be updated accordingly to point to this folder itself (not the executable in it). Then the tool would be available globally across the system for use. This is the recommended use of the tool.
+
     ```sh
     chasse child.html src
     ```
@@ -111,10 +113,12 @@ The current supported way to use the application:
 1. `-h` or `--help`: Shows help with the complete guide to the use of the tool.
 1. `-v` or `--version`: Shows the current version of the tool.
 1. `-p` or `--parent-path`: To specify the path to the parent files. Defaults to the source path.
+
     ```sh
     chasse -p="components/home/" child.chasse.html src
     ```
 1. `-l` or `--logs`: To enable display of the logs during the generation of the HTML files. This is helpful when the files fail to get generated and there is an error with the Chasse source files.
+
     ```sh
     chasse -l child.chasse.html src
     ```
