@@ -103,12 +103,12 @@ The current release is the among the early ones in the line and has somewhat lim
 
 ## Binaries
 
-The current supported way to use the application:
-1. **The `chasse` Folder**: The folder (with the binary) is sized at around 4 kB. The folder is to be kept in the system at a desired location. The PATH variable is to be updated accordingly to point to this folder itself (not the executable in it). Then the tool would be available globally across the system for use. This is the recommended use of the tool.
+The current supported way to use the application (only in UNIX and Windows) is to download the respective binaries from the `dist` folder (for the required OS), place them in an appropriate location and add them to the system PATH. Verify the binary by using:
 
     ```sh
-    chasse child.html src
+    chasse -v
     ```
+Currently, the respective binaries are sized at around 6.3 MB.
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
@@ -144,7 +144,7 @@ The current supported way to use the application:
 
 ## Development Log
 
-Currrent stable version is v0.2.1.
+Currrent stable version is v1.0.0.
 1. **Version 0.1.0**:
     - Basic child HTML file parsing to get required components.
     - Parsing parent HTML file for extracting components.
@@ -158,8 +158,8 @@ Currrent stable version is v0.2.1.
     - Minor refactoring and standardization of code.
 1. **Version 1.0.0**:
     - This is the official release (delivered via GitHub and official website).
-    - Zero external dependencies, with Python version locked in at 3.10.
-    - Injection of data via variables in Chasse code.
+    - Zero external dependencies as such, with Python version locked in at 3.10.
+    - Original parent HTML code indentations reflect properly while writing to the generated files without the use of any external formatter.
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
@@ -171,10 +171,16 @@ No official releases yet.
 <p align="right">(<a href="#top">Top</a>)</p>
 
 
+## Known Bugs
+
+1. There is a `ComponentCountMismatchException` that gets thrown when the same component is attempted to be reused in a child file more than once.
+
+
 ## Important
 
 1. The Chasse files that would be converted into regular HTML files *must* have the extension `<file-name>.chasse.html`. This is done to ensure that users do not confuse the generated files with the source files. This feature would not be altered in future releases in support of `.html` extensions as well to maintain clarity and segregation.
 1. The parents files *must* be defined starting from the very first line, without any line breaks in between. This is a feature limitation in the current version which would soon be addressed.
 1. Remember that a component is plugged in as <Component!! /> instead of <Component!!/>. Future releases would address this issue.
+1. It is assumed that an uniform indentation of 4 spaces is used while writing HTML code, which is the standard observed for most of the IDEs out there.
 
 <p align="right">(<a href="#top">Top</a>)</p>

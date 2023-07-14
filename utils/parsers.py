@@ -25,8 +25,8 @@ class Parser:
         positional_arguments_group.add_argument("destination-path", type=str, help="The directory wherein the HTML files will get stored.")
         options_group = self.parser.add_argument_group('OPTIONS')
         options_group.add_argument("-h", "--help", action="help", help="To show this help message.")
-        options_group.add_argument("-v", "--version", action="version", version="%(prog)s 1.1.0", help="To show software's version number.")
-        options_group.add_argument("-l", "--logs", action="store_true", help="To enable display of low-level logs (DEFAULT: False).")
+        options_group.add_argument("-v", "--version", action="version", version="Chasse 1.0.0", help="To show software's version number (SemVer 2.0).")
+        options_group.add_argument("-l", "--logs", action="store_true", help="To enable display of low-level verbose logs (DEFAULT: False).")
         options_group.add_argument("-p", "--parent-path", action="store_true", help="To specify the path to the parent HTML files (DEFAULT: Child source path).")
     
     def get_source_path(self) -> str:
@@ -86,7 +86,7 @@ def check_supposed_parent_file_paths(parent_files: list, parent_path: str) -> No
     if set(resultant_parent_files) != set(parent_files):
         raise ParentFilesNotFoundException
     if logger.is_log_required():
-        logger.info("All parent file references intact.")
+        logger.info("INFO: All parent file references intact.")
         
 
 def get_requested_component_names(source_path: str) -> list:
@@ -99,7 +99,7 @@ def get_requested_component_names(source_path: str) -> list:
             if len(line) > 6 and line[-5:] == "!! />" and line[0] == "<" and line[1].isupper():
                 requested_component_names.append(line[1:-5])
     if logger.is_log_required():
-        logger.info(f"{len(requested_component_names)} components requested by the child file.")
+        logger.info(f"INFO: {len(requested_component_names)} components requested by the child file.")
     return requested_component_names
 
 
@@ -127,7 +127,7 @@ def get_components(requested_component_names: list, parent_file_names: list, par
                 if active_component:
                     component.append(output_line)
     if logger.is_log_required():
-        logger.info(f"{len(components)} matching components found in the parent files.")
+        logger.info(f"INFO: {len(components)} matching components found in the parent files.")
     return components
 
 
