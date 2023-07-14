@@ -14,3 +14,6 @@ rough.txt
 # Packaging & Distribution
 build
 chasse.spec
+
+# Incomplete Tests
+_tests

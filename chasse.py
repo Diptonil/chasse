@@ -4,7 +4,7 @@ from utils.logs import logger
 from utils.parsers import Parser
 
 
-def main():
+def main() -> None:
     """Client code logic."""
     parser = Parser()
     source_path = parser.get_source_path()
