@@ -4,6 +4,7 @@
 
 <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![CodeQL Python](https://github.com/Diptonil/chasse/actions/workflows/codeql.yml/badge.svg)
 
 <p align="center">
@@ -143,22 +144,22 @@ The current supported way to use the application:
 
 ## Development Log
 
-Currrent stable version is v1.1.0.
-1. **Version 1.0.0**:
+Currrent stable version is v0.2.1.
+1. **Version 0.1.0**:
     - Basic child HTML file parsing to get required components.
     - Parsing parent HTML file for extracting components.
     - Generation of resultant HTML files with the components.
-1. **Version 1.1.0**:
+1. **Version 0.2.0**:
     - Option `-l` to view additional application-level logs added.
     - CLI more responsive to error and success messages.
-    - Enrich terminologies and introduce extension changes.
-1. **Version 1.1.1**:
+    - Introduce extension changes.
+1. **Version 0.2.1**:
     - Linter support for development.
-    - Minor refactoring of code.
-    - Profiling and metrics.
-1. **Version 1.2.0**:
-    - Introduce code conventions.
-    - Introduce official releases (delivered through the official website).
+    - Minor refactoring and standardization of code.
+1. **Version 1.0.0**:
+    - This is the official release (delivered via GitHub and official website).
+    - Zero external dependencies, with Python version locked in at 3.10.
+    - Injection of data via variables in Chasse code.
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
