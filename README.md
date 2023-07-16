@@ -95,7 +95,6 @@ The current release is the among the early ones in the line and has somewhat lim
 1. **Nested Inheritance**: Components would be allowed to have components within themselves.
 1. **Transition to Go**: Python is an interpreted language, due to which, despite the general programming ease, a release featuring Go would be introduced soon that would also be able to use concurrency in parsing multiple files at once, giving a binary that is extremely small and portable.
 1. **Processing Multiple Files**: Multiple files would be parsed at once to generate HTML.
-1. **Rectified indentations**: Deeply nested components may not get properly indented at present without IDE support.
 1. **Improved Error Handling**: Make error (and success) messages more informative.
 
 <p align="right">(<a href="#top">Top</a>)</p>
