@@ -29,7 +29,7 @@ class ChildDocument:
 
     def __str__(self) -> str:
         return "The source file that needs to be converted."
-    
+
     def convert(self, parent_path: str, destination_path: str) -> ResultantDocument:
         """Returns the resultant document."""
 

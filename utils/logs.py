@@ -25,8 +25,8 @@ class Logger:
     def __init__(self) -> None:
         self.logger = logging.getLogger()
         self.handler = logging.StreamHandler()
-        
-    def initialize_logger(self, is_log_required: bool=None) -> None:
+
+    def initialize_logger(self, is_log_required: bool = None) -> None:
         """Initializes the level of the logger based on options passed into the CLI."""
 
         if is_log_required:
@@ -44,12 +44,12 @@ class Logger:
         if self.logger.level == logging.ERROR:
             return False
         return True
-    
+
     def error(self, message: str) -> None:
         """If an error-level log message is requested."""
 
         self.logger.error(message)
-    
+
     def info(self, message: str) -> None:
         """If an info-level log message is requested."""
         self.logger.info(message)

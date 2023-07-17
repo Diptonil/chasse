@@ -11,11 +11,11 @@ def write_resultant_document(source_path: str, destination_path: str, components
     with open(os.path.join(destination_path, source_file_name), "w") as file:
         for line in source_file:
             output_line = line
-            spaces = len(line) - len(line.lstrip(' ')) - 4
+            spaces = len(line) - len(line.lstrip(" ")) - 4
             line = line.strip()
             if len(line) > 6 and line[-5:] == "!! />" and line[0] == "<" and line[1].isupper():
                 component_name = line[1:-5]
-                spaces = str(' ' * spaces)
+                spaces = str(" " * spaces)
                 lines = [spaces + line for line in components[component_name]]
                 file.writelines(lines)
                 continue
