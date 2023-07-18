@@ -74,7 +74,6 @@ The current release is the among the early ones in the line and has somewhat lim
 1. **Zero Dependencies**: The `chasse` binary is all that is needed to begin. No underlying installations or packages required.
 1. **Similar to Sass**: Chasse generates HTML files in a similar manner to Sass. Hence, developers familiar with Sass would be already set to go.
 1. **HTML-Only**: Unlike Sass, there are no foreign files that would require extensions or plugins in the IDE to work. Parent and child source files are in HTML. And so are the resultant files.
-1. **Portable Binary**: The binaries in the repository are all cross-platform.
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
@@ -82,7 +81,7 @@ The current release is the among the early ones in the line and has somewhat lim
 ## Cons
 
 1. **Too Young**: Lacks many features that can be added to make it more robust.
-1. **Binary Size**: The `dist` folder has been removed `.gitignore` since the binary inside it is barely of 4 kB. The independent single-file binary (in the root folder), however, occupies 6 mB, which is somewhat large as a utility.
+1. **Binary Size**: The single-file binary (in the `dist` folder), occupies around 6.5 mB, which is somewhat large as a utility.
 1. **Less Customizable**: There are fewer features and CLI options at present. However, the tool is expected to improve more in subsequent releases.
 
 <p align="right">(<a href="#top">Top</a>)</p>
@@ -102,11 +101,11 @@ The current release is the among the early ones in the line and has somewhat lim
 
 ## Binaries
 
-The current supported way to use the application (only in UNIX and Windows) is to download the respective binaries from the `dist` folder (for the required OS), place them in an appropriate location and add them to the system PATH. Verify the binary by using:
+The current supported way to use the application (only in UNIX and Windows) is to download the respective binaries from the `dist` folder (for the required OS), place them in an appropriate location and add them to the system PATH. Verify the binary by using.
 
-    ```sh
-    chasse -v
-    ```
+```sh
+chasse -v
+```
 Currently, the respective binaries are sized at around 6.3 MB.
 
 <p align="right">(<a href="#top">Top</a>)</p>
@@ -141,38 +140,11 @@ Currently, the respective binaries are sized at around 6.3 MB.
 <p align="right">(<a href="#top">Top</a>)</p>
 
 
-## Development Log
-
-Currrent stable version is v1.0.0.
-1. **Version 0.1.0**:
-    - Basic child HTML file parsing to get required components.
-    - Parsing parent HTML file for extracting components.
-    - Generation of resultant HTML files with the components.
-1. **Version 0.2.0**:
-    - Option `-l` to view additional application-level logs added.
-    - CLI more responsive to error and success messages.
-    - Introduce extension changes.
-1. **Version 0.2.1**:
-    - Linter support for development.
-    - Minor refactoring and standardization of code.
-1. **Version 1.0.0**:
-    - This is the official release (delivered via GitHub and official website).
-    - Zero external dependencies as such, with Python version locked in at 3.10.
-    - Original parent HTML code indentations reflect properly while writing to the generated files without the use of any external formatter.
-
-<p align="right">(<a href="#top">Top</a>)</p>
-
-
 ## Release Log
 
-No official releases yet.
+For details about releases and version history, read the [Changelog](CHANGELOG.md) (for versioning, SemVer 2.0 has been used here). Current LTS is **Chasse: Ballet (v1.0.0)**.
 
 <p align="right">(<a href="#top">Top</a>)</p>
-
-
-## Known Bugs
-
-1. There is a `ComponentCountMismatchException` that gets thrown when the same component is attempted to be reused in a child file more than once.
 
 
 ## Important
