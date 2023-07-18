@@ -119,12 +119,12 @@ Currently, the respective binaries are sized at around 6.3 MB.
 1. `-p` or `--parent-path`: To specify the path to the parent files. Defaults to the source path.
 
     ```sh
-    chasse -p="components/home/" child.chasse.html src
+    chasse child.chasse.html src -p src/parents
     ```
 1. `-l` or `--logs`: To enable display of the logs during the generation of the HTML files. This is helpful when the files fail to get generated and there is an error with the Chasse source files.
 
     ```sh
-    chasse -l child.chasse.html src
+    chasse -l child.chasse.html .
     ```
 
 <p align="right">(<a href="#top">Top</a>)</p>

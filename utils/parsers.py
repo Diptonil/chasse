@@ -26,7 +26,7 @@ class Parser:
         options_group.add_argument("-h", "--help", action="help", help="To show this help message.")
         options_group.add_argument("-v", "--version", action="version", version="Chasse 1.0.0", help="To show software's version number (SemVer 2.0).")
         options_group.add_argument("-l", "--logs", action="store_true", help="To enable display of low-level verbose logs (DEFAULT: False).")
-        options_group.add_argument("-p", "--parent-path", action="store_true", help="To specify the path to the parent HTML files (DEFAULT: Child source path).")
+        options_group.add_argument("-p", "--parent-path", nargs='?', default=None, help="To specify the path to the parent HTML files (DEFAULT: Child source path).")
 
     def get_source_path(self) -> str:
         """Returns the source file path."""
@@ -41,7 +41,7 @@ class Parser:
     def get_parent_path(self) -> str:
         """Returns the path to the parent files."""
 
-        parent_path = self.args.get("parent-path")
+        parent_path = self.args.get("parent_path")
         if parent_path is None:
             parent_path = os.path.dirname(self.get_source_path())
         return parent_path
