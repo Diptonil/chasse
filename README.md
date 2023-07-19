@@ -6,6 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![CodeQL Python](https://github.com/Diptonil/chasse/actions/workflows/codeql.yml/badge.svg)
+<img alt="Version" src="https://img.shields.io/badge/version-1.0.0-teal">
 
 <p align="center">
     <img src="_static/chasse.png" />
