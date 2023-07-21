@@ -1,7 +1,14 @@
 from argparse import ArgumentParser
 import os
 
-from exceptions import NoSpecifiedParentsException, ParentAsDirectoryException, ParentFilesNotFoundException, ComponentCountMismatchException, ParentPathNotSpecifiedException
+from exceptions import (
+    NoSpecifiedParentsException, 
+    ParentAsDirectoryException, 
+    ParentFilesNotFoundException, 
+    ComponentCountMismatchException, 
+    ParentPathNotSpecifiedException,
+    ResultantFileNameNotSpecifiedException
+)
 from utils.logs import logger
 
 
@@ -27,10 +34,10 @@ class Parser:
         options_group.add_argument("-v", "--version", action="version", version="Chasse 1.0.0", help="To show software's version number (SemVer 2.0).")
         options_group.add_argument("-l", "--logs", action="store_true", help="To enable display of low-level verbose logs (DEFAULT: False).")
         options_group.add_argument("-p", "--parent-path", nargs='?', default='', help="To specify the path to the parent HTML files (DEFAULT: Child source path).")
-        options_group.add_argument("-n", "--name", nargs='?', default=None, help="To specify the name to the resultant HTML file (DEFAULT: Child file name).")
+        options_group.add_argument("-n", "--name", nargs='?', default='', help="To specify the name to the resultant HTML file (DEFAULT: Child file name).")
 
-    def get_source_path(self) -> str:
-        """Returns the source file path."""
+    def get_source_name(self) -> str:
+        """Returns the source file name."""
 
         return self.args.get("source-file")
 
@@ -44,7 +51,7 @@ class Parser:
 
         parent_path = self.args.get("parent_path")
         if parent_path == '':
-            parent_path = os.path.dirname(self.get_source_path())
+            parent_path = os.path.dirname(self.get_source_name())
         elif parent_path is None:
             raise ParentPathNotSpecifiedException
         return parent_path
@@ -52,7 +59,12 @@ class Parser:
     def get_resultant_file_name(self) -> str:
         """Returns the name of the resultant file."""
 
-        file_name = self.args.get("")
+        file_name = self.args.get("name")
+        if file_name == '':
+            file_name = self.get_source_name()
+        elif file_name is None:
+            raise ResultantFileNameNotSpecifiedException
+        return file_name.replace(".chasse", "")
 
     def get_log_requirement(self) -> bool:
         """Returns if low-level logs are required."""

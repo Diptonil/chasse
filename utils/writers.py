@@ -3,10 +3,13 @@ import os
 from utils.logs import logger
 
 
-def write_resultant_document(source_path: str, destination_path: str, components: dict) -> None:
+def write_resultant_document(source_path: str, destination_path: str, components: dict, resultant_file_name: str = None) -> None:
     """Writes data to the new resultant document in the specified location."""
 
-    source_file_name = os.path.basename(source_path).replace(".chasse", "")
+    if resultant_file_name is None:
+        source_file_name = os.path.basename(source_path).replace(".chasse", "")
+    else:
+        source_file_name = os.path.basename(resultant_file_name)
     source_file = open(source_path, "r")
     with open(os.path.join(destination_path, source_file_name), "w") as file:
         for line in source_file:
