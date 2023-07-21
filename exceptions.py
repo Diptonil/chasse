@@ -38,3 +38,11 @@ class ParentFilesNotFoundException(ChasseException):
 
 class ComponentCountMismatchException(ChasseException):
     """Thrown if the count of the parsed components don't match the count of the required components."""
+
+
+class ParentPathNotSpecifiedException(ChasseException):
+    """Thrown if the -p or --parent-path flag has been used without specifying the path."""
+
+
+class ResultantFileNameNotSpecifiedException(ChasseException):
+    """Thrown if the -n or --name flag has been used without specifying the resultant file name."""

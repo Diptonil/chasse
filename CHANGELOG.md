@@ -1,3 +1,20 @@
+# Version 1.1.0
+
+## Enhancements
+
+- []
+
+
+## Bug Fixes
+
+- [#12](https://github.com/Diptonil/chasse/issues/12): Fix missing arguments with optionals like `-p` with an error message (in case argument not provided).
+
+
+## Additional Notes
+
+- Imports made more readable.
+
+
 # Version 1.0.0
 
 ## Enhancements

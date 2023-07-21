@@ -1,4 +1,13 @@
-from exceptions import argument_exceptions, InvalidDirectoryPathException, InvalidFilePathException, NoSpecifiedParentsException, ParentAsDirectoryException, ParentFilesNotFoundException
+from exceptions import (
+    argument_exceptions, 
+    InvalidDirectoryPathException, 
+    InvalidFilePathException,
+    NoSpecifiedParentsException, 
+    ParentAsDirectoryException, 
+    ParentFilesNotFoundException,
+    ParentPathNotSpecifiedException,
+    ResultantFileNameNotSpecifiedException
+)
 from utils.documents import ChildDocument
 from utils.logs import logger
 from utils.parsers import Parser
@@ -6,6 +15,7 @@ from utils.parsers import Parser
 
 def main() -> None:
     """Client code logic."""
+
     parser = Parser()
     source_path = parser.get_source_path()
     destination_path = parser.get_destination_path()
@@ -29,6 +39,10 @@ def main() -> None:
         logger.error("ERROR: The specified parent declaration(s) in the child appear to be directories instead of files. Declare the used parent file instead of a directory.")
     except ParentFilesNotFoundException:
         logger.error("ERROR: There seem to be no parent Chasse files in the specified directory. Customise parent file paths using the `-p` flag (check help).")
+    except ParentPathNotSpecifiedException:
+        logger.error("ERROR: There is no mention of the parent file path with the option -p or --parent-path.")
+    except ResultantFileNameNotSpecifiedException:
+        logger.error("ERROR: There is no mention of the resultant file name with the option -n or --name.")
 
 
 if __name__ == "__main__":

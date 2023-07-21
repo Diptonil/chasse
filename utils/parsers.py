@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 import os
 
-from exceptions import NoSpecifiedParentsException, ParentAsDirectoryException, ParentFilesNotFoundException, ComponentCountMismatchException
+from exceptions import NoSpecifiedParentsException, ParentAsDirectoryException, ParentFilesNotFoundException, ComponentCountMismatchException, ParentPathNotSpecifiedException
 from utils.logs import logger
 
 
@@ -26,7 +26,8 @@ class Parser:
         options_group.add_argument("-h", "--help", action="help", help="To show this help message.")
         options_group.add_argument("-v", "--version", action="version", version="Chasse 1.0.0", help="To show software's version number (SemVer 2.0).")
         options_group.add_argument("-l", "--logs", action="store_true", help="To enable display of low-level verbose logs (DEFAULT: False).")
-        options_group.add_argument("-p", "--parent-path", nargs='?', default=None, help="To specify the path to the parent HTML files (DEFAULT: Child source path).")
+        options_group.add_argument("-p", "--parent-path", nargs='?', default='', help="To specify the path to the parent HTML files (DEFAULT: Child source path).")
+        options_group.add_argument("-n", "--name", nargs='?', default=None, help="To specify the name to the resultant HTML file (DEFAULT: Child file name).")
 
     def get_source_path(self) -> str:
         """Returns the source file path."""
@@ -42,9 +43,16 @@ class Parser:
         """Returns the path to the parent files."""
 
         parent_path = self.args.get("parent_path")
-        if parent_path is None:
+        if parent_path == '':
             parent_path = os.path.dirname(self.get_source_path())
+        elif parent_path is None:
+            raise ParentPathNotSpecifiedException
         return parent_path
+    
+    def get_resultant_file_name(self) -> str:
+        """Returns the name of the resultant file."""
+
+        file_name = self.args.get("")
 
     def get_log_requirement(self) -> bool:
         """Returns if low-level logs are required."""
