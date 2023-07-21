@@ -6,12 +6,15 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![CodeQL Python](https://github.com/Diptonil/chasse/actions/workflows/codeql.yml/badge.svg)
+<img alt="Version" src="https://img.shields.io/badge/version-1.0.0-teal">
 
 <p align="center">
     <img src="_static/chasse.png" />
 </p>
 
 **Chasse** is a lightweight CLI tool to write reusable HTML *components* (much like JSX) instead of repetitive code, without too many steps or a steep learning curve. It strips down on the boring and redundant and makes HTML fun again! Just run a simple command on an HTML file inheriting components from a base HTML file to convert it into a complete, usable HTML file. 
+
+**Visit the official <a href="https://chasse-diptonil.vercel.app">website</a> for in-depth documentations, conventions and install guides.**
 
 
 ## Procedure
@@ -101,12 +104,13 @@ The current release is the among the early ones in the line and has somewhat lim
 
 ## Binaries
 
-The current supported way to use the application (only in UNIX and Windows) is to download the respective binaries from the `dist` folder (for the required OS), place them in an appropriate location and add them to the system PATH. Verify the binary by using.
+The current supported way to use the application (only in UNIX and Windows) is to download the respective binaries from the <a href="https://chasse-diptonil.vercel.app">website</a> (for the required OS), and follow the instructions to get it up and runnning. Alternatively, you can use the `dist` folder in this repo, place them in an appropriate location and add them to the system PATH. Verify the binary by using:
 
 ```sh
 chasse -v
 ```
-Currently, the respective binaries are sized at around 6.3 MB.
+It is highly recommended to use the website for downloading the packaged binary. Support for downloading from the repo shall be removed soon.
+Currently, the respective binaries are sized at around 6.5 MB.
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
