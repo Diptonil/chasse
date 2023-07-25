@@ -2,7 +2,7 @@
 
 ## Enhancements
 
-- []
+- [#5](https://github.com/Diptonil/chasse/issues/5): Add additional option for deciding resultant file names: `-l`.
 
 
 ## Bug Fixes
