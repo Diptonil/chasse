@@ -11,11 +11,16 @@ def write_resultant_document(source_path: str, destination_path: str, components
     else:
         source_file_name = os.path.basename(resultant_file_name)
     source_file = open(source_path, "r")
+    parent_declaration_over = False
     with open(os.path.join(destination_path, source_file_name), "w") as file:
         for line in source_file:
             output_line = line
             spaces = len(line) - len(line.lstrip(" ")) - 4
             line = line.strip()
+            if line in ["<html>", "<!DOCTYPE html5>", "<!DOCTYPE html>"]:
+                parent_declaration_over = True
+            if not parent_declaration_over:
+                continue
             if len(line) > 6 and line[-5:] == "!! />" and line[0] == "<" and line[1].isupper():
                 component_name = line[1:-5]
                 spaces = str(" " * spaces)

@@ -9,6 +9,7 @@
 
 - [#12](https://github.com/Diptonil/chasse/issues/12): Fix missing arguments with optionals like `-p` with an error message (in case argument not provided).
 - [#10](https://github.com/Diptonil/chasse/issues/10): Fix parent declarations system. Single-line comments and line breaks before and between the parent declaration are now permitted.
+- [#6](https://github.com/Diptonil/chasse/issues/6): Parent Declarations were previously Retained in the Generated HTML Files. The behaviour is changed to make the parent declarations not get written to the file.
 
 
 ## Additional Notes
