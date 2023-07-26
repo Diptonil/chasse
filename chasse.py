@@ -9,6 +9,7 @@ from exceptions import (
     ParentFilesNotFoundException,
     ParentPathNotSpecifiedException,
     ResultantFileNameNotSpecifiedException,
+    MultiLineCommentBeforeParentDeclarationException,
     ChasseException
 )
 from utils.documents import ChildDocument
@@ -54,6 +55,8 @@ def main() -> None:
         logger.error("ERROR: The specified parent declaration(s) in the child appear to be directories instead of files. Declare the used parent file instead of a directory.")
     except ParentFilesNotFoundException:
         logger.error("ERROR: There seem to be no parent Chasse files in the specified directory. Customise parent file paths using the `-p` flag (check help).")
+    except MultiLineCommentBeforeParentDeclarationException:
+        logger.error("ERROR: Multi-line HTML comments are not allowed before parent declarations. Restrict comments to a single line.")
 
 
 if __name__ == "__main__":

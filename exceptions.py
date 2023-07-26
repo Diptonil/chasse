@@ -46,3 +46,7 @@ class ParentPathNotSpecifiedException(ChasseException):
 
 class ResultantFileNameNotSpecifiedException(ChasseException):
     """Thrown if the -n or --name flag has been used without specifying the resultant file name."""
+
+
+class MultiLineCommentBeforeParentDeclarationException(ChasseException):
+    """Thrown if we have a multi-line HTML comment (that spans across multiple lines) before the parent file definitions."""

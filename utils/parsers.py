@@ -7,7 +7,8 @@ from exceptions import (
     ParentFilesNotFoundException, 
     ComponentCountMismatchException, 
     ParentPathNotSpecifiedException,
-    ResultantFileNameNotSpecifiedException
+    ResultantFileNameNotSpecifiedException,
+    MultiLineCommentBeforeParentDeclarationException
 )
 from utils.logs import logger
 
@@ -81,6 +82,10 @@ def get_supposed_parent_file_names(source_path: str) -> list:
     with open(source_path, "r") as file:
         for line in file:
             line = line.strip()
+            if line == '' or (line[:4] == "<!--" and line[-3:] == "-->"):
+                continue
+            if line[:4] == "<!--" and line[-3:] != "-->":
+                raise MultiLineCommentBeforeParentDeclarationException
             if line[-3:] != "!!>":
                 break
             parent_files.append(line[1:-3] + ".chasse.html")

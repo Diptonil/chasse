@@ -8,11 +8,13 @@
 ## Bug Fixes
 
 - [#12](https://github.com/Diptonil/chasse/issues/12): Fix missing arguments with optionals like `-p` with an error message (in case argument not provided).
+- [#10](https://github.com/Diptonil/chasse/issues/10): Fix parent declarations system. Single-line comments and line breaks before and between the parent declaration are now permitted.
 
 
 ## Additional Notes
 
 - Imports made more readable.
+- [#14](https://github.com/Diptonil/chasse/issues/14): Docker image build released.
 
 
 # Version 1.0.0

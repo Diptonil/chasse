@@ -3,6 +3,7 @@
 <div id="top"></div>
 
 <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
+<img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" />
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![CodeQL Python](https://github.com/Diptonil/chasse/actions/workflows/codeql.yml/badge.svg)
@@ -13,6 +14,11 @@
 </p>
 
 **Chasse** is a lightweight CLI tool to write reusable HTML *components* (much like JSX) instead of repetitive code, without too many steps or a steep learning curve. It strips down on the boring and redundant and makes HTML fun again! Just run a simple command on an HTML file inheriting components from a base HTML file to convert it into a complete, usable HTML file. 
+
+**The official image of Chasse can be used to try out the tool by spinning up a simple container.** Start using the command immediately in the container adter starting it. There are some sample source files. You can also create some of your files. Get the image by:
+```sh
+docker pull diptonilroy/chasse:1.0.0
+```
 
 **Visit the official <a href="https://chasse-diptonil.vercel.app">website</a> for in-depth documentations, conventions and install guides.**
 
@@ -92,7 +98,7 @@ The current release is the among the early ones in the line and has somewhat lim
 
 ## Future
 
-1. **Tests**: Tests written would be using the `pytest` framework.
+1. **Tests**: Tests (unit and integration) need to be written.
 1. **Passing Data**: Components would be allowed to have data passed on to them in form of variables.
 1. **Nested Inheritance**: Components would be allowed to have components within themselves.
 1. **Transition to Go**: Python is an interpreted language, due to which, despite the general programming ease, a release featuring Go would be introduced soon that would also be able to use concurrency in parsing multiple files at once, giving a binary that is extremely small and portable.
@@ -104,13 +110,15 @@ The current release is the among the early ones in the line and has somewhat lim
 
 ## Binaries
 
-The current supported way to use the application (only in UNIX and Windows) is to download the respective binaries from the <a href="https://chasse-diptonil.vercel.app">website</a> (for the required OS), and follow the instructions to get it up and runnning. Alternatively, you can use the `dist` folder in this repo, place them in an appropriate location and add them to the system PATH. Verify the binary by using:
+- The current supported way to use the application (only in UNIX and Windows) is to download the respective binaries from the <a href="https://chasse-diptonil.vercel.app">website</a> (for the required OS), and follow the instructions to get it up and runnning. Alternatively, you can use the `dist` folder in this repo, place them in an appropriate location and add them to the system PATH. Verify the binary by using:
 
-```sh
-chasse -v
-```
-It is highly recommended to use the website for downloading the packaged binary. Support for downloading from the repo shall be removed soon.
-Currently, the respective binaries are sized at around 6.5 MB.
+    ```sh
+    chasse -v
+    ```
+- If you would like to try out the utility before working with it, use the official image `diptonilroy/chasse:1.0.0`. You can also build the same by running the `Dockerfile` located in the `.devcontainer` directory of this repository.
+- It is highly recommended to use the website for downloading the packaged binary. Support for downloading from the repo shall be removed soon.
+- Currently, the respective binaries are sized at around 6.5 MB.
+
 
 <p align="right">(<a href="#top">Top</a>)</p>
 
